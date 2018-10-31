@@ -1,0 +1,46 @@
+group 'io.github.kri2'
+version '0.0.1-SNAPSHOT'
+
+allprojects{
+	ext{
+		staticResourcesFolderPath = "${rootDir}/server/src/main/resources/static"
+		angularDistFolderPath = "${rootDir}/client/dist/client" 
+		nodeModulesPath = "${rootDir}/client"
+		nodeVersion = '11.0.0'
+		npmVersion = '6.4.1'
+	}
+	repositories{
+		mavenCentral()
+	}
+}
+
+/* MAIN PRODUCTION BUILD TASK, TO BE EXECUTED BY HEROKU */
+
+task stage(type: GradleBuild){
+	group 'build'
+	doLast{
+		println '====== SUBPROJECTS LIST ========='
+		println subprojects.findAll{subproject->subproject.plugins.hasPlugin('java')}
+		subprojects.each{p->println p.path}
+	}
+
+	description 'Pruduction build task for heroku to execute'
+	//setTasks(['client:buildAngularProd',
+	//	'server:copyAngularDistFolderToServersStaticFolder',
+	//	'server:bootJar'])
+
+}
+
+//Should be executed only with --parallel flag!!!
+task serve(type: Exec){
+    group 'dev'
+    description 'Runs both backend and frontend apps in development mode. Don\'t execute without --parallel flag'
+    dependsOn 'client:serve'
+    dependsOn 'server:serve'
+}
+
+/*
+helpful gradle commands:
+gradle tasks --all
+use gradle stage -info to see usefull stuff
+*/

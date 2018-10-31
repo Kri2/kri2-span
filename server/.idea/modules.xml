@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-762364881/client.iml" filepath="$PROJECT_DIR$/.idea/modules/-762364881/client.iml" group="client" />
+      <module fileurl="file://$PROJECT_DIR$/server.iml" filepath="$PROJECT_DIR$/server.iml" group="server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server_main.iml" filepath="$PROJECT_DIR$/.idea/modules/server_main.iml" group="server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/server_test.iml" filepath="$PROJECT_DIR$/.idea/modules/server_test.iml" group="server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1606884821/spring-angular-local-test.iml" filepath="$PROJECT_DIR$/.idea/modules/-1606884821/spring-angular-local-test.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,46 @@
+buildscript{
+	repositories{
+		mavenCentral()
+    	maven {
+      		url "https://plugins.gradle.org/m2/"
+    	}
+  	}
+	dependencies{
+		classpath "com.moowork.gradle:gradle-node-plugin:1.2.0"
+	}
+//testowy comment
+  
+}
+	
+apply plugin: 'com.moowork.node'
+
+node{
+	version = nodeVersion
+	npmVersion = npmVersion
+    download = true
+    nodeModulesDir = file(nodeModulesPath)
+}
+
+
+task buildAngularProd(type:NpmTask, dependsOn:'npmInstall'){
+	group 'build'
+	description 'Builds Angular frontend for production.'
+	args = ['run', 'build']
+}
+
+
+
+
+
+
+task cleanAngularProd(type: Delete){
+  group 'cleanup'
+  description 'Deletes build frontend Angular application in production mode.'
+  delete angularDistFolderPath
+}
+
+task serve(type: NpmTask){
+  group 'dev'
+  description 'Equivalent of running ng serve command.'
+  args = ['run', 'ng' ,'serve']
+}
