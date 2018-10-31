@@ -7,9 +7,7 @@ buildscript{
   	}
 	dependencies{
 		classpath "com.moowork.gradle:gradle-node-plugin:1.2.0"
-	}
-//testowy comment
-  
+	}  
 }
 	
 apply plugin: 'com.moowork.node'

@@ -25,9 +25,9 @@ task stage(type: GradleBuild){
 	}
 
 	description 'Pruduction build task for heroku to execute'
-	//setTasks(['client:buildAngularProd',
-	//	'server:copyAngularDistFolderToServersStaticFolder',
-	//	'server:bootJar'])
+	setTasks(['client:buildAngularProd',
+		'server:copyAngularDistFolderToServersStaticFolder',
+		'server:bootJar'])
 
 }
 
