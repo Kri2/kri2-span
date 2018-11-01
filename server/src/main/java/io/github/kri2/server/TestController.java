@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins={"https://kri2-span.herokuapp.com","http://localhost:4200"})
+@CrossOrigin(origins={"https://kri2-span.herokuapp.com",
+                      "http://kri2-span.herokuapp.com",
+                      "http://localhost:4200"})
 @RequestMapping("/api")
 public class TestController
 {
