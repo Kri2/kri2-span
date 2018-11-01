@@ -13,9 +13,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController
 {
     @GetMapping(path="/hello-world")
-    public String helloWorld(){
+    public Greeting helloWorld(){
         System.out.println("kontroler otrzymał request");
-        return "Hello World!";
+        return new Greeting("Hello World");
     }
     
 }
+class Greeting{
+    Greeting(){}
+    Greeting(String text){this.text=text;}
+    private String text;
+    
+    public String getText()
+    {
+        return text;
+    }
+    
+    public void setText(String text)
+    {
+        this.text = text;
+    }
+}
+

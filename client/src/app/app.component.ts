@@ -10,14 +10,14 @@ export class AppComponent {
   constructor(private http:HttpClient){}
 
   ngOnInit():void{
-    this.http.get('https://kri2-span.herokuapp.com/api/hello-world')
+    this.http.get<UserResponse>('https://kri2-span.herokuapp.com/api/hello-world')
     .subscribe(
-        data=>{console.log(data)},
+        data=>{console.log(data.text)},
         error=>{console.log("error occured!!!!!")}
     )
   }
 }
 
 interface UserResponse{
-  helloMessage:string;
+  text:string;
 }
