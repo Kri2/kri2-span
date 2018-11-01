@@ -29,6 +29,8 @@ task stage(type: GradleBuild){
 	setTasks(['client:buildAngularProd',
 		'server:copyAngularDistFolderToServersStaticFolder',
 		'server:bootJar'])
+	//finalizedBy 'server:cleanStaticResources'
+    finalizedBy 'client:cleanAngularProd'
 
 }
 
