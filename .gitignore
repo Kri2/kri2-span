@@ -1,0 +1,19 @@
+#### IntelliJ IDEA ####
+.idea
+*.iws
+*.iml
+*.ipr
+**/target
+
+#### ANGULAR ####
+**/node_modules
+**/dist
+**/tmp
+**/out-tsc
+**/e2e/*.js
+**/e2e/*.map
+**/static
+
+#### SPRING ####
+*.war
+**/out

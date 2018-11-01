@@ -2,6 +2,7 @@ group 'io.github.kri2'
 version '0.0.1-SNAPSHOT'
 
 allprojects{
+	// extra properties
 	ext{
 		staticResourcesFolderPath = "${rootDir}/server/src/main/resources/static"
 		angularDistFolderPath = "${rootDir}/client/dist/client" 

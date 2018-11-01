@@ -12,6 +12,7 @@ buildscript{
 	
 apply plugin: 'com.moowork.node'
 
+// configure gradle-node-plugin
 node{
 	version = nodeVersion
 	npmVersion = npmVersion
