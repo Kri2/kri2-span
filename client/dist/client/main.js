@@ -75,7 +75,7 @@ var AppComponent = /** @class */ (function () {
     }
     AppComponent.prototype.ngOnInit = function () {
         this.http.get('https://kri2-span.herokuapp.com/api/hello-world')
-            .subscribe(function (data) { console.log(data); }, function (error) { console.log("error occured!!!!!"); });
+            .subscribe(function (data) { console.log(data.text); }, function (error) { console.log("error occured!!!!!"); });
     };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({

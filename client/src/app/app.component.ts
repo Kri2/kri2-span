@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,7 +11,7 @@ export class AppComponent {
   constructor(private http:HttpClient){}
 
   ngOnInit():void{
-    this.http.get<UserResponse>('https://kri2-span.herokuapp.com/api/hello-world')
+    this.http.get<UserResponse>(environment.apiUrl+'/hello-world')
     .subscribe(
         data=>{console.log(data.text)},
         error=>{console.log("error occured!!!!!")}

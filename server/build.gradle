@@ -28,7 +28,21 @@ task copyAngularDistFolderToServersStaticFolder(type:Copy){
 	into file(staticResourcesFolderPath)
 }
 
+
+
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
+
+task serve(type: Exec){
+	group 'dev'
+	description 'Runs Spring locally in development mode.'
+	dependsOn bootRun 
+	/*bootRun is provided by spring-boot-gradle-plugin*/
+}
+
+bootRun{
+	//arguments passed to bootRun, don't have spring's dev version yet
+	args = ["--spring.profiles.active=dev"]  //which is -Dspring.profiles.active=dev
 }
