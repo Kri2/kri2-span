@@ -24,7 +24,7 @@ node{
 task buildAngularProd(type:NpmTask, dependsOn:'npmInstall'){
 	group 'build'
 	description 'Builds Angular frontend for production.'
-	args = ['run', 'build']
+	args = ['run', 'buildForProd']
 }
 
 
