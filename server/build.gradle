@@ -33,6 +33,9 @@ task copyAngularDistFolderToServersStaticFolder(type:Copy){
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	// #### DATASOURCE ####
+	compile group: 'postgresql', name: 'postgresql', version: '9.1-901-1.jdbc4'
+	testCompile group: 'com.h2database', name: 'h2', version: '1.4.197'
 }
 
 task serve(type: Exec){
