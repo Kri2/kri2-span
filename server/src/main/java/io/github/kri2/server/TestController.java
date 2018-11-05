@@ -1,9 +1,12 @@
 package io.github.kri2.server;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins={"https://kri2-span.herokuapp.com",
@@ -13,10 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class TestController
 {
+    @Autowired
+    CarRepository carRepository; // TODO: change to constructor injection later
+    
     @GetMapping(path="/hello-world")
     public Greeting helloWorld(){
         System.out.println("kontroler otrzymał request");
         return new Greeting("Hello World");
+    }
+    
+    @GetMapping(value={"/cars","/cool-cars"})
+    public List<Car> retrieveAllCars(){
+        return carRepository.findAll();
     }
     
 }
