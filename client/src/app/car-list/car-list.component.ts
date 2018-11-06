@@ -10,7 +10,7 @@ export class CarListComponent implements OnInit {
 
   constructor(private apiService:ApiServiceService) { }
 
-  private cars:Array<object>=[];
+  public cars:Array<object>=[];
   ngOnInit() {
     this.getCars();
   }
