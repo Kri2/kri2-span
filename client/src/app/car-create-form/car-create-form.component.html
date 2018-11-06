@@ -1,0 +1,19 @@
+<h3>Car Form</h3>
+  
+  
+  <form class="form-signin" #carForm="ngForm" (ngSubmit)="save(carForm.value)">
+    
+    <div class="form-group">
+      <label for="make">Make</label>
+      <input type="text" ngModel #nameField="ngModel" name="make" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="model">Model</label>
+      <input type="text" ngModel #nameField="ngModel" name="model" class="form-control" id="model">
+    </div>
+
+    <div class="col-xs-4"><button type="submit" class="btn btn-block btn-info">Submit</button></div>
+    <div class="col-xs-4"><button class="btn btn-block btn-cancel" [routerLink]="['/car-list']">Cancel</button></div>
+
+  </form>

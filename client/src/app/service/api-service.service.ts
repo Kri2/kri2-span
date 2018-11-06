@@ -9,4 +9,7 @@ export class ApiServiceService {
   API_URL = environment.apiUrl;//localhost:8080/api or kri2-herokuapp.com/api
   constructor(private httpClient:HttpClient) {}
   getCars(){return this.httpClient.get(`${this.API_URL}/cars`);}
+  createCar(car){
+    return this.httpClient.post(`${this.API_URL}/add`,car);
+  }
 }
