@@ -21,3 +21,6 @@
 *.war
 **/out
 **/build
+
+#### BUILD TOOLS ####
+.gradle
