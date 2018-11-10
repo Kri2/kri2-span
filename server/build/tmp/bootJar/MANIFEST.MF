@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Start-Class: io.github.kri2.server.ServerApplication
-Main-Class: org.springframework.boot.loader.JarLauncher
-
