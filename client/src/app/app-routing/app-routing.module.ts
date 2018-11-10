@@ -5,7 +5,8 @@ import { CarListComponent } from '../car-list/car-list.component';
 import { CarCreateFormComponent } from '../car-create-form/car-create-form.component';
 
 const routes:Routes = [
-  {path: '', redirectTo: '/cars', pathMatch: 'full'},
+  //{path: '', redirectTo: '/cars', pathMatch: 'full'},//<---- this had some problems when reloading on heroku
+  {path: '', component:CarListComponent},
   {path: 'cars',component:CarListComponent},
   {path: 'form',component:CarCreateFormComponent}
 ];
