@@ -1,8 +1,8 @@
 package io.github.kri2.server;
 
-class CarNotFoundException extends RuntimeException {
+public class CarNotFoundException extends RuntimeException {
     
-    CarNotFoundException(Long id) {
+    public CarNotFoundException(Long id) {
         super("Could not find car " + id);
     }
 }

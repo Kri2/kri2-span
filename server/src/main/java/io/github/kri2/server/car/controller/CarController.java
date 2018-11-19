@@ -1,5 +1,8 @@
-package io.github.kri2.server;
+package io.github.kri2.server.car.controller;
 
+import io.github.kri2.server.Car;
+import io.github.kri2.server.CarNotFoundException;
+import io.github.kri2.server.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,30 +20,27 @@ import java.util.List;
 @CrossOrigin(origins={"https://kri2-span.herokuapp.com",
                       "http://kri2-span.herokuapp.com",
                       "http://localhost:4200",
-                      "http://localhost:8080" })
-@RequestMapping("/api")
-public class TestController
-{
-    @Autowired
-    CarRepository carRepository; // TODO: change to constructor injection later
+                      "http://localhost:8080"})
+
+@RequestMapping("/api/car")
+public class CarController {
     
-    @GetMapping(path="/hello-world")
-    public Greeting helloWorld(){
-        System.out.println("kontroler otrzymał request");
-        return new Greeting("Hello World");
+    private final CarRepository carRepository;
+    
+    @Autowired
+    CarController(CarRepository carRepository){
+        this.carRepository = carRepository;
     }
     
-    @GetMapping(value={"/cars","/cool-cars"})
+    @GetMapping(value={"/cars", "/cool-cars"})
     public List<Car> retrieveAllCars(){
         return carRepository.findAll();
     }
     
-    
     @GetMapping("/cars/{id}")
     public Car retrieveCar(@PathVariable long id){
-        //Optional<Car> car = carRepository.findById(id);
-        //return car.get();
-        return carRepository.findById(id).orElseThrow(()->new CarNotFoundException(id));
+        return carRepository.findById(id)
+                            .orElseThrow(()->new CarNotFoundException(id));
     }
     
     @PostMapping(value={"/cars", "/add"})
@@ -50,35 +50,19 @@ public class TestController
     
     @PutMapping("/cars/{id}")
     public Car replaceCar(@RequestBody Car newCar,@PathVariable Long id){
-        return carRepository.findById(id).map(car->{
-            car.setMake(newCar.getMake());
-            car.setModel(newCar.getModel());
-            return carRepository.save(car);
-        }).orElseGet(()-> {
-            newCar.setId(id);
-            return carRepository.save(newCar);
-        });
+        return carRepository.findById(id)
+                            .map(car->{
+                                    car.setMake(newCar.getMake());
+                                    car.setModel(newCar.getModel());
+                                    return carRepository.save(car);
+                            }).orElseGet(()-> {
+                                    newCar.setId(id);
+                                    return carRepository.save(newCar);
+                            });
     }
     
     @DeleteMapping("/cars/{id}")
     public void deleteCar(@PathVariable Long id){
         carRepository.deleteById(id);
     }
-    
 }
-class Greeting{
-    Greeting(){}
-    Greeting(String text){this.text=text;}
-    private String text;
-    
-    public String getText()
-    {
-        return text;
-    }
-    
-    public void setText(String text)
-    {
-        this.text = text;
-    }
-}
-
