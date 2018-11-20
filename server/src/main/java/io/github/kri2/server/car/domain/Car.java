@@ -1,4 +1,4 @@
-package io.github.kri2.server;
+package io.github.kri2.server.car.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

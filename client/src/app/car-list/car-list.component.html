@@ -8,10 +8,12 @@
     <tr>
       <th>Make</th>
       <th>Model</th>
+      <th>Action</th>
     </tr>
     <tr *ngFor="let car of cars">
       <td> {{ car.make }} </td>
       <td> {{ car.model }} </td>
+      <td><button type="button" class="btn btn-warning btn-sm" (click)="removeCar(car.model)">remove</button></td>
     </tr>
   </table>
   

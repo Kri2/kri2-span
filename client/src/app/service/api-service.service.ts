@@ -12,4 +12,7 @@ export class ApiServiceService {
   createCar(car){
     return this.httpClient.post(`${this.API_URL}/add`,car);
   }
+  removeCar(carModelToRemove:string){
+    return this.httpClient.delete(`${this.API_URL}/cars/bymodel/${carModelToRemove}`)
+  }
 }

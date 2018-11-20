@@ -22,4 +22,11 @@ export class CarListComponent implements OnInit {
         console.log(data);
       });
   }
+  removeCar(carModelToRemove){
+    this.apiService.removeCar(carModelToRemove).subscribe(
+      result=>{
+        this.getCars()},
+      error=>
+        console.error(error));
+  }
 }

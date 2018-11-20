@@ -1,5 +1,6 @@
-package io.github.kri2.server;
+package io.github.kri2.server.car.repository;
 
+import io.github.kri2.server.car.domain.Car;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

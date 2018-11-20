@@ -1,5 +1,6 @@
 package io.github.kri2.server;
 
+import io.github.kri2.server.car.exception.CarNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

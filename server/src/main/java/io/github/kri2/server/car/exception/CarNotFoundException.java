@@ -1,4 +1,4 @@
-package io.github.kri2.server;
+package io.github.kri2.server.car.exception;
 
 public class CarNotFoundException extends RuntimeException {
     

@@ -1,8 +1,8 @@
 package io.github.kri2.server.car.controller;
 
-import io.github.kri2.server.Car;
-import io.github.kri2.server.CarNotFoundException;
-import io.github.kri2.server.CarRepository;
+import io.github.kri2.server.car.domain.Car;
+import io.github.kri2.server.car.exception.CarNotFoundException;
+import io.github.kri2.server.car.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -64,5 +64,11 @@ public class CarController {
     @DeleteMapping("/cars/{id}")
     public void deleteCar(@PathVariable Long id){
         carRepository.deleteById(id);
+    }
+    
+    @DeleteMapping("/cars/bymodel/{model}")
+    public void deleteCarModel(@PathVariable String model){
+        Long modelId = carRepository.findByModel(model).get(0).getId();// TODO: change it later to delete only by id?
+        carRepository.deleteById(modelId);
     }
 }
