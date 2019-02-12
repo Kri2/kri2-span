@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins={"https://kri2-span.herokuapp.com",
-                      "http://kri2-span.herokuapp.com",
-                      "http://localhost:4200",
-                      "http://localhost:8080"})
+                      "http://kri2-span.herokuapp.com"
+                      /*"http://localhost:4200",
+                      "http://localhost:8080"*/})
 
 @RequestMapping("/api/car")
 public class CarController {
@@ -33,7 +34,9 @@ public class CarController {
     }
     
     @GetMapping(value={"/cars", "/cool-cars"})
-    public List<Car> retrieveAllCars(){
+    public List<Car> retrieveAllCars(HttpServletRequest request){
+        System.out.println("------> REMOTE ADDRESS: "+request.getRemoteAddr());
+        System.out.println("------> REMOTE HOST: "+request.getRemoteHost());
         return carRepository.findAll();
     }
     
