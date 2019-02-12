@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/api/car'
+  apiUrl: 'http://localhost:8080/api/car',
+  homeUrl: 'http://localhost:8080'
 };
 
 /*

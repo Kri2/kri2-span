@@ -43,3 +43,12 @@ task serve(type: NpmTask){
   description 'Equivalent of running ng serve command.'
   args = ['run', 'ng' ,'serve']
 }
+
+task hello{
+  doLast{
+    println '----------> hello world <-------------'
+    println "rootDir in client is ${rootDir}"
+    //println "nodeDir in client is ${nodeDir}"
+  }
+}
+

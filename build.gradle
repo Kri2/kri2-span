@@ -36,10 +36,23 @@ task stage(type: GradleBuild){
 
 //Should be executed only with --parallel flag!!!
 task serve(type: Exec){
+	doLast{
+		println 'root directory is: ${rootDir}'
+	}
     group 'dev'
     description 'Runs both backend and frontend apps in development mode. Don\'t execute without --parallel flag'
+    dependsOn 'hello'
+    dependsOn 'client:hello'
     dependsOn 'client:serve'
     dependsOn 'server:serve'
+}
+
+task hello{
+	doLast{
+		println '----------> hello world <-------------'
+		println "rootDir is ${rootDir}"
+		//println "nodeDir is ${nodeDir}"
+	}
 }
 
 /*

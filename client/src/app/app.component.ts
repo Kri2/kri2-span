@@ -11,7 +11,7 @@ export class AppComponent {
   constructor(private http:HttpClient){}
 
   ngOnInit():void{
-    this.http.get<UserResponse>(environment.apiUrl+'/hello-world')
+    this.http.get<UserResponse>(environment.homeUrl+'/api/hello-world')
     .subscribe(
         data=>{console.log(data.text)},
         error=>{console.log("error occured!!!!!")}
