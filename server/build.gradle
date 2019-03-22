@@ -37,6 +37,12 @@ dependencies {
 	runtimeOnly('org.postgresql:postgresql')
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.1.0.RELEASE'
 	//testCompile group: 'com.h2database', name: 'h2', version: '1.4.197'
+	// for java 9+
+	compile('javax.xml.bind:jaxb-api:2.3.0')
+	// for java 9+, it actually helped 
+	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.1.Final'
+
+
 }
 
 task serve(type: Exec){

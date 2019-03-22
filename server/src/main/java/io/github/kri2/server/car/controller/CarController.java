@@ -37,6 +37,7 @@ public class CarController {
     public List<Car> retrieveAllCars(HttpServletRequest request){
         System.out.println("------> REMOTE ADDRESS: "+request.getRemoteAddr());
         System.out.println("------> REMOTE HOST: "+request.getRemoteHost());
+        System.out.println("------> LOCAL ADDRESS: "+ request.getLocalAddr());
         return carRepository.findAll();
     }
     

@@ -19,6 +19,11 @@ export class CarCreateFormComponent implements OnInit {
     this.router.navigate(['/cars'])
   }
 
+  goBack(): void {
+    //this.location.back();
+    this.gotoList();
+  }
+
   save(form){
     console.log("dane z formy: "+form);
     console.log(form);
