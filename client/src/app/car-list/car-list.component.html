@@ -13,8 +13,8 @@
     <tr *ngFor="let car of cars">
       <td><a routerLink="/detail/{{car.id}}"> {{ car.make }} </a></td><!-- for modification (put) in the future-->
       <td> {{ car.model }} </td>
-      <td><button type="button" class="btn btn-warning btn-sm" (click)="deleteCar(car)">remove</button></td>
-      <td><button type="button" class="btn btn-warning btn-sm" (click)="updateCar(car)">update</button></td>
+      <td><button type="button" class="btn btn-warning btn-sm" (click)="deleteCar(car)" title="delete car">x</button></td>
+      <td><button type="button" class="btn btn-warning btn-sm" (click)="updateCar(car)" title="udpate car">update</button></td>
     </tr>
   </table>
   
