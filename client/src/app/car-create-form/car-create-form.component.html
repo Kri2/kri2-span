@@ -1,5 +1,5 @@
 <h3>Car Form</h3>
-<!--  TODO, make it in material, problems on iphone with form submit
+<!--  TODO, make it in material, problems on iphone with form submit  -->
 <form class="example-container" #carForm="ngForm" (ngSubmit)="save(carForm.value)">
   <mat-form-field>
     <input matInput placeholder="Make" ngModel #nameField="ngModel" name="make" class="form-control" required>
@@ -13,9 +13,9 @@
   <div class="col-xs-4"><button mat-button (click)="goBack()">Cancel</button></div>
     
 </form>
--->
 
-  
+
+ <!-- 
   <form class="form-signin" #carForm="ngForm" (ngSubmit)="save(carForm.value)">
     
     <div class="form-group">
@@ -31,4 +31,4 @@
     <div class="col-xs-4"><button color="primary" mat-button ng-submit="submit()">Submit</button></div>
     
   </form>
-  <div class="col-xs-4"><button mat-button (click)="goBack()">Cancel</button></div>
+  <div class="col-xs-4"><button mat-button (click)="goBack()">Cancel</button></div>-->
