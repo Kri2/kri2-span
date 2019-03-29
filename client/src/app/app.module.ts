@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatTableModule} from '@angular/material/table';
 
 import { AppComponent } from './app.component';
 import { CarListComponent } from './car-list/car-list.component';
@@ -30,7 +31,8 @@ import { CarCreateFormComponent } from './car-create-form/car-create-form.compon
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
