@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiServiceService } from '../service/api-service.service';
 import { Car } from '../model/car';
 import { Observable } from 'rxjs';
 import { getLocalRefs } from '@angular/core/src/render3/discovery_utils';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatTable } from '@angular/material';
 /**
  * Those methods are using service, and they are used directly by html
  */
@@ -24,12 +26,15 @@ export class CarListComponent implements OnInit {
   public cars:Array<Car> = [];
 
   // experimenting with angular material table
-  displayedColumns:string[] = ["make", "model"];
-  dataSource = CARS_MOCK;
+  displayedColumns:string[] = ["make", "model", "remove"];
+  //dataSource = CARS_MOCK;
+  dataSource:MatTableDataSource<Car>; //now it will be initialized in reset() function
+  @ViewChild(MatTable) table: MatTable<any>;
   
   // experimenting with angular material table end
   ngOnInit() {
     this.getCars();
+    this.dataSource = new MatTableDataSource(CARS_MOCK.slice());
   }
 
   getCars(){
@@ -69,4 +74,18 @@ export class CarListComponent implements OnInit {
         console.log(error)
     );
   }
+  // temporary for experimenting with material table
+  removeAll() {
+    this.dataSource.data = [];
+  }
+  removeAt(index:number){
+    const data = this.dataSource.data;
+    data.splice(index,1);
+    this.dataSource.data = data;
+  }
+  reset(){
+    this.dataSource.data = CARS_MOCK.slice();
+    this.table.renderRows();
+  }
+
 }
