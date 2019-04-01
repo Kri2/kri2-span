@@ -4,9 +4,11 @@ import { Car } from '../model/car';
 import { Observable } from 'rxjs';
 import { getLocalRefs } from '@angular/core/src/render3/discovery_utils';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatTable, MatPaginator } from '@angular/material';
+import { MatTable, MatPaginator, MatSort, Sort } from '@angular/material';
+
 /**
  * Those methods are using service, and they are used directly by html
+ * TODO: connect dataSource to the back-end
  */
 const CARS_MOCK:Car[]=[
   {id:1, make:'Toyota', model:'Celica'},
@@ -89,6 +91,21 @@ export class CarListComponent implements OnInit {
   reset(){
     this.dataSource.data = CARS_MOCK.slice();
     this.table.renderRows();
+  }
+  sortData(sort:Sort){
+    if (sort.active && sort.direction !== '') {
+      this.dataSource.data = this.dataSource.data.sort((a, b) => {
+        const isAsc = sort.direction === 'asc';
+        switch (sort.active) {
+          case 'make': return this.compare(a.make, b.make, isAsc);
+          case 'model': return this.compare(a.model, b.model, isAsc);
+          default: return 0;
+        }
+      });
+    }
+  }
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
 }

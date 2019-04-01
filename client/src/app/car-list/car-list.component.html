@@ -19,17 +19,17 @@
 
   <!-- WIP new table being made with the use of Angular Material -->
   <h4>Experimenting with angular material table (data comes from the front-end)</h4>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8">
     
     <!-- Car Make Column -->
     <ng-container matColumnDef="make">
-      <th mat-header-cell *matHeaderCellDef>-make-</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>-make-</th>
       <td mat-cell *matCellDef="let car">{{car.make}}</td>
     </ng-container>
 
     <!-- Car Model Column -->
     <ng-container matColumnDef="model">
-      <th mat-header-cell *matHeaderCellDef>-model-</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>-model-</th>
       <td mat-cell *matCellDef="let car">{{car.model}}</td>
     </ng-container>
 
