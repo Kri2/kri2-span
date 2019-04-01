@@ -4,14 +4,17 @@ import { Car } from '../model/car';
 import { Observable } from 'rxjs';
 import { getLocalRefs } from '@angular/core/src/render3/discovery_utils';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatTable } from '@angular/material';
+import { MatTable, MatPaginator } from '@angular/material';
 /**
  * Those methods are using service, and they are used directly by html
  */
 const CARS_MOCK:Car[]=[
   {id:1, make:'Toyota', model:'Celica'},
   {id:2, make:'Nissan', model:'GTR'},
-  {id:3, make:'FSO', model:'Nysa'}
+  {id:3, make:'FSO', model:'Nysa'},
+  {id:4, make:'Isuzu', model:'Rodeo'},
+  {id:5, make:'Porsche', model: '911'},
+  {id:6, make:'Geo', model: 'Metro'}
 ];
 
 @Component({
@@ -25,16 +28,16 @@ export class CarListComponent implements OnInit {
 
   public cars:Array<Car> = [];
 
-  // experimenting with angular material table
+  // columns definitions for material table
   displayedColumns:string[] = ["make", "model", "remove"];
-  //dataSource = CARS_MOCK;
+  
   dataSource:MatTableDataSource<Car>; //now it will be initialized in reset() function
   @ViewChild(MatTable) table: MatTable<any>;
-  
-  // experimenting with angular material table end
+  @ViewChild(MatPaginator) paginator:MatPaginator;
   ngOnInit() {
     this.getCars();
     this.dataSource = new MatTableDataSource(CARS_MOCK.slice());
+    this.dataSource.paginator = this.paginator;
   }
 
   getCars(){
@@ -80,7 +83,7 @@ export class CarListComponent implements OnInit {
   }
   removeAt(index:number){
     const data = this.dataSource.data;
-    data.splice(index,1);
+    data.splice((this.paginator.pageIndex * this.paginator.pageSize)+index, 1);
     this.dataSource.data = data;
   }
   reset(){
