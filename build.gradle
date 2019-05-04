@@ -17,7 +17,7 @@ allprojects{
 
 /* MAIN PRODUCTION BUILD TASK, TO BE EXECUTED BY HEROKU */
 
-task stage(type: GradleBuild){
+task stage(type: GradleBuild){ 
 	group 'build'
 	doLast{
 		println '====== SUBPROJECTS LIST ========='
@@ -27,10 +27,10 @@ task stage(type: GradleBuild){
 
 	description 'Pruduction build task for heroku to execute'
 	setTasks(['client:buildAngularProd',
-		'server:copyAngularDistFolderToServersStaticFolder',
-		'server:bootJar'])
+			  'server:copyAngularDistFolderToServersStaticFolder',
+			  'server:bootJar'])
 	//finalizedBy 'server:cleanStaticResources'
-    finalizedBy 'client:cleanAngularProd'
+	finalizedBy 'client:cleanAngularProd'
 
 }
 

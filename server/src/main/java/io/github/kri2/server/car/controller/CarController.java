@@ -3,6 +3,8 @@ package io.github.kri2.server.car.controller;
 import io.github.kri2.server.car.domain.Car;
 import io.github.kri2.server.car.exception.CarNotFoundException;
 import io.github.kri2.server.car.repository.CarRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,6 +30,7 @@ import java.util.List;
 @RequestMapping("/api/car")
 public class CarController {
     
+    private static Logger log = LoggerFactory.getLogger( CarController.class );
     private final CarRepository carRepository;
     
     @Autowired
