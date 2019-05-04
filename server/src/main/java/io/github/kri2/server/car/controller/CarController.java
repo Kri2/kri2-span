@@ -4,6 +4,7 @@ import io.github.kri2.server.car.domain.Car;
 import io.github.kri2.server.car.exception.CarNotFoundException;
 import io.github.kri2.server.car.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,10 +36,16 @@ public class CarController {
     }
     
     @GetMapping(value={"/cars", "/cool-cars"})
-    public List<Car> retrieveAllCars(HttpServletRequest request){
+    public List<Car> retrieveAllCars(HttpServletRequest request, @RequestParam(value="order", required = false)String order){
         System.out.println("------> REMOTE ADDRESS: "+request.getRemoteAddr());
         System.out.println("------> REMOTE HOST: "+request.getRemoteHost());
         System.out.println("------> LOCAL ADDRESS: "+ request.getLocalAddr());
+        System.out.println("got order param with value: "+order);
+        if(order!=null)
+        {
+            if(order.equals("asc")) return carRepository.findAllByOrderByMakeAsc();
+            else if(order.equals("desc")) return carRepository.findAllByOrderByMakeDesc();
+        }
         return carRepository.findAll();
     }
     
