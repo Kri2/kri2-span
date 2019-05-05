@@ -12,6 +12,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material';
 import { MatTooltipModule } from '@angular/material';
 import { MatSortModule } from '@angular/material';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatCardModule} from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { CarListComponent } from './car-list/car-list.component';
@@ -38,7 +40,9 @@ import { CarCreateFormComponent } from './car-create-form/car-create-form.compon
     MatTableModule,
     MatPaginatorModule,
     MatTooltipModule,
-    MatSortModule
+    MatSortModule,
+    MatDividerModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

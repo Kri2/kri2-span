@@ -1,3 +1,11 @@
 h4{
     color: #b4bac4;
 }
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+.row{
+    margin-top:40px;
+    margin-bottom:40px;
+}
