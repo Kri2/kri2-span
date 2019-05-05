@@ -1,7 +1,7 @@
 # kri2-span
-Spring + Angular + Gradle
+Spring-Boot + Angular + Gradle
 
-# Technologies used
+### Technologies used
 
 Persistence: Hibernate+JPA
 
@@ -14,5 +14,5 @@ Front-end: Gradle+npm
 
 CI/CD: by Github+Heroku
 
-# Demo
+### Demo
 [live demo](https://kri2-span.herokuapp.com)
