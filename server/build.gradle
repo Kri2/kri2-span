@@ -41,8 +41,9 @@ dependencies {
 	compile('javax.xml.bind:jaxb-api:2.3.0')
 	// for java 9+, it actually helped 
 	compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.1.Final'
-
-
+	// JUnit5
+	implementation 'org.junit.jupiter:junit-jupiter-api:5.5.0-M1'
+	implementation 'org.junit.platform:junit-platform-runner:1.5.0-M1'
 }
 
 task serve(type: Exec){

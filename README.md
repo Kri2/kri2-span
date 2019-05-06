@@ -1,16 +1,18 @@
 # kri2-span
 Spring-Boot + Angular + Gradle
 
-### Technologies used
+### Technology Stack
 
 Persistence: Hibernate+JPA
 
 Logging: SLF4J+LOGBack
 
+Tests: JUnit5, Mockito
+
 Front-end: Angular2+
 
 Build: Back-end: Gradle, 
-Front-end: Gradle+npm
+Front-end: Gradle, npm
 
 CI/CD: by Github+Heroku
 
