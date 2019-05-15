@@ -24,6 +24,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+
+/**
+ * PUT and DELETE are idempotent, POST is not.
+ */
 @RestController
 @CrossOrigin(origins={"https://kri2-span.herokuapp.com",
                       "http://kri2-span.herokuapp.com"
@@ -41,7 +45,16 @@ public class CarController {
         this.carRepository = carRepository;
     }
     
-    @GetMapping(value={"/cars", "/cool-cars"})
+    
+    
+    /**
+     * GET all Cars
+     * @param request
+     * @param order
+     * @return
+     */
+    @GetMapping(value={"/cars", "/"})
+    @ResponseStatus(HttpStatus.OK)
     public List<Car> retrieveAllCars(HttpServletRequest request, @RequestParam(value="order", required = false)String order){
         System.out.println("------> REMOTE ADDRESS: "+request.getRemoteAddr());
         System.out.println("------> REMOTE HOST: "+request.getRemoteHost());
@@ -55,7 +68,14 @@ public class CarController {
         return carRepository.findAll();
     }
     
-    @GetMapping("/cars/{id}")
+    
+    /**
+     * GET Car with id
+     * @param id
+     * @return
+     */
+    @GetMapping("/cars/{id:\\d+}")
+    @ResponseStatus(HttpStatus.OK)
     public Car retrieveCar(@PathVariable long id){
         return carRepository.findById(id)
                             .orElseThrow(()->new CarNotFoundException(id));
@@ -67,8 +87,8 @@ public class CarController {
      * @param newCar
      * @return the created Car
      */
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value={"/cars", "/add"})
+    @ResponseStatus(HttpStatus.CREATED)
     public Car newCar(@RequestBody Car newCar, HttpServletRequest request, HttpServletResponse response){
         LOG.debug("create Car:{}", newCar.toString());
         Car createdCar = carRepository.save(newCar);
@@ -77,20 +97,34 @@ public class CarController {
         return createdCar;
     }
     
-    @PutMapping("/cars/{id}")
+    
+    /**
+     * UPDATE a Car
+     * @param newCar
+     * @param id
+     * @return
+     */
+    @PutMapping("/cars/{id:\\d+}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public Car replaceCar(@RequestBody Car newCar,@PathVariable Long id){
         return carRepository.findById(id)
-                            .map(car->{
+                            .map(car->{ // Optional is used here
                                     car.setMake(newCar.getMake());
                                     car.setModel(newCar.getModel());
                                     return carRepository.save(car);
                             }).orElseGet(()-> {
-                                    newCar.setId(id);
-                                    return carRepository.save(newCar);
+                                    LOG.info("Car not found"); // TODO some Exception should be thrown here
+                                    return new Car();
                             });
     }
     
-    @DeleteMapping("/cars/{id}")
+    
+    /**
+     * DELETE a Car with id
+     * @param id
+     */
+    @DeleteMapping(value = "/cars/{id:\\d+}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCar(@PathVariable Long id){
         carRepository.deleteById(id);
     }
@@ -98,6 +132,6 @@ public class CarController {
     @DeleteMapping("/cars/bymodel/{model}")
     public void deleteCarModel(@PathVariable String model){
         Long modelId = carRepository.findByModel(model).get(0).getId();// TODO: change it later to delete only by id?
-        carRepository.deleteById(modelId);
+        carRepository.deleteById(modelId);                             // TODO: exception should be thrown if car is not found eg ResourceNotFound
     }
 }
