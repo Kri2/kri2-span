@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -30,7 +33,7 @@ import java.util.List;
 @RequestMapping("/api/car")
 public class CarController {
     
-    private static Logger log = LoggerFactory.getLogger( CarController.class );
+    private static final Logger LOG = LoggerFactory.getLogger( CarController.class );
     private final CarRepository carRepository;
     
     @Autowired
@@ -58,9 +61,20 @@ public class CarController {
                             .orElseThrow(()->new CarNotFoundException(id));
     }
     
+    /**
+     * CREATE a Car.
+     * In cases of resource creation, it indicates the URL to the newly created resource.
+     * @param newCar
+     * @return the created Car
+     */
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value={"/cars", "/add"})
-    public Car newCar(@RequestBody Car newCar){
-        return carRepository.save(newCar);
+    public Car newCar(@RequestBody Car newCar, HttpServletRequest request, HttpServletResponse response){
+        LOG.debug("create Car:{}", newCar.toString());
+        Car createdCar = carRepository.save(newCar);
+        response.setHeader("Location", request.getRequestURL().append("/").append(createdCar.getId()).toString());
+        LOG.debug("Created Car {} with {}", createdCar.toString(), createdCar.getId());
+        return createdCar;
     }
     
     @PutMapping("/cars/{id}")

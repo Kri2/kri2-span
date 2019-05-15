@@ -121,7 +121,7 @@ class CarControllerTest
         // verify
         int status = mvcResult.getResponse().getStatus();
         // assertEquals( HttpStatus.CREATED.value(), status, "Incorrect Response Status"); // TODO: Consider making it REST compliant and return 201
-        assertEquals( HttpStatus.OK.value(), status, "Incorrect Response Status");
+        assertEquals( HttpStatus.CREATED.value(), status, "Incorrect Response Status");
         // verify that service method was called once
         verify(carRepository).save(any(Car.class));
         
