@@ -115,7 +115,7 @@ export class ApiServiceService {
       'Something bad happened; please try again later.');
   };
   
-  /** LOGGER */
+  /** LOGGER */ // TODO: make it a app.module service
   private log(message:string){
     //this.messageService.add(`HeroService: ${message}`);
     console.log(`CarService: ${message}`);
