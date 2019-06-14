@@ -25,7 +25,7 @@ public class DevMvcConfig implements WebMvcConfigurer
     @Override
     public void addCorsMappings(CorsRegistry registry){
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200")
+                .allowedOrigins("http://localhost:4200","http://localhost:8080")// with this hello-world check won't work
                 .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE");
     }
 }
