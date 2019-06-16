@@ -19,12 +19,14 @@ import { AppComponent } from './app.component';
 import { CarListComponent } from './car-list/car-list.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { CarCreateFormComponent } from './car-create-form/car-create-form.component';
+import { CarListLocalComponent } from './car-list-local/car-list-local.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarListComponent,
-    CarCreateFormComponent
+    CarCreateFormComponent,
+    CarListLocalComponent
   ],
   imports: [
     BrowserModule,
